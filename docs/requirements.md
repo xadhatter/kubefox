@@ -1,4 +1,7 @@
-# Requirements
+---
+title: Requirements
+filename: requirements.md
+---
 
 ## Personas
 
@@ -45,8 +48,6 @@ Explicit permission must be granted for component to communication (zero trust)
 #### Telemetry
 
 #### Administration
-
-####
 
 ### Beta 2
 

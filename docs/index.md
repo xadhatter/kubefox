@@ -1,4 +1,7 @@
-# KubeFox
+---
+title: KubeFox
+filename: index.md
+---
 
 KubeFox is a software platform that makes creating, deploying, releasing, and
 maintaining software applications on Kubernetes easier. It consists of a core
@@ -37,7 +40,7 @@ immutable containers to ensure this happens.
 A System Object can be created from Git commit Once all code and configuration
 is ready and checked-in .
 
-Once an instance of a System is created it is immutable. It  monolithic
+Once an instance of a System is created it is immutable. It monolithic
 packages. This guarantees that compatible versions of Components are always
 deployed and release together.
 
