@@ -1,4 +1,5 @@
 # Temp files
+site/
 tmp/
 *.bkp
 *.dtmp

@@ -18,6 +18,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Deploy docs
+        uses: mhausenblas/mkdocs-deploy-gh-pages@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - id: set-matrix
         name: Output component builds
         run: |
@@ -62,6 +67,28 @@ jobs:
       - name: Build and push component
         run: |
           make push/${{ matrix.component }} IMAGE_TAG="${{ github.ref_name }}"
+
+  docs:
+    name: Publish docs
+    runs-on: ubuntu-22.04
+    needs: publish-component
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Upload docs
+        run: make docs
+
+      - name: Upload docs
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload entire repository
+          path: site/
+
+      - name: Deploy docs
+        id: deployment
+        uses: actions/deploy-pages@v2
 
   release:
     name: Release

@@ -14,6 +14,7 @@ CRDS_DIR := $(abspath $(ROOT)/libs/core/api/crds)
 CRDS_BOOTSTRAP := $(CRDS_DIR)/bootstrap
 PROTO_SRC := $(abspath $(ROOT)/libs/core/api/protobuf)
 PROTO_OUT := $(abspath $(ROOT)/libs/core/grpc)
+DOCS_OUT := $(abspath $(ROOT)/site)
 
 COMPONENTS := api-server broker operator runtime-server
 PUSHES := $(addprefix push/,$(COMPONENTS))
@@ -59,6 +60,16 @@ $(BINS):
 	mkdir -p "$(dir $@)"
 	CGO_ENABLED=0 go build -C "$(SRC_DIR)/" -o "$(TARGET_DIR)/$(component)" -ldflags "-s -w" main.go
 
+.PHONY: docs
+docs: clean
+	pipenv install
+	pipenv run mkdocs build
+
+.PHONY: serve-docs
+serve-docs:
+	pipenv install
+	pipenv run mkdocs serve
+
 .PHONY: generate
 generate: protobuf crds
 
@@ -83,5 +94,6 @@ crds:
 
 .PHONY: clean
 clean:
-	rm -rf $(CRDS_DIR)
 	rm -rf $(TARGET_DIR)/
+	rm -rf $(CRDS_DIR)/
+	rm -rf $(DOCS_OUT)/

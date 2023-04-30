@@ -1,7 +1,4 @@
----
-title: Design
-nav_order: 3
----
+# Design
 
 This is some stuff. [asds](asdf)
 
