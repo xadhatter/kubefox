@@ -46,22 +46,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Log in to ghcr.io
-        uses: redhat-actions/podman-login@v1
-        with:
-          registry: ${{ env.IMAGE_REGISTRY }}
-          username: ${{ env.REGISTRY_USERNAME }}
-          password: ${{ env.REGISTRY_PASSWORD }}
+      # - name: Log in to ghcr.io
+      #   uses: redhat-actions/podman-login@v1
+      #   with:
+      #     registry: ${{ env.IMAGE_REGISTRY }}
+      #     username: ${{ env.REGISTRY_USERNAME }}
+      #     password: ${{ env.REGISTRY_PASSWORD }}
 
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version-file: components/${{ matrix.component }}/go.mod
-          cache-dependency-path: components/${{ matrix.component }}/go.sum
+      # - name: Setup Go
+      #   uses: actions/setup-go@v4
+      #   with:
+      #     go-version-file: components/${{ matrix.component }}/go.mod
+      #     cache-dependency-path: components/${{ matrix.component }}/go.sum
 
-      - name: Build and push component
-        run: |
-          make push/${{ matrix.component }} IMAGE_TAG="${{ github.ref_name }}"
+      # - name: Build and push component
+      #   run: |
+      #     make push/${{ matrix.component }} IMAGE_TAG="${{ github.ref_name }}"
 
   docs:
     name: Publish docs
