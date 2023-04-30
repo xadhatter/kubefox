@@ -77,6 +77,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup pipenv
+        run: pip install pipenv
+
       - name: Upload docs
         run: make docs
 
